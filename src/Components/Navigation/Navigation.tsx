@@ -1,14 +1,15 @@
 import React from 'react';
 import './Navigation.css';
 import { Layout, Menu, Icon } from 'antd';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const { Sider } = Layout;
 
-class Navigation extends React.Component {
+interface NavigationTypes {
+    collapsed: boolean
+}
 
-    props = {
-        collapsed: false
-    };
+class Navigation extends React.Component<NavigationTypes, {}> {
 
     render() {
         return (
@@ -16,16 +17,20 @@ class Navigation extends React.Component {
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1">
-                        <Icon type="user" />
-                        <span>nav 1</span>
+                        <Link to="/">
+                            <Icon type="user" />
+                            <span>nav 1</span>
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <Icon type="video-camera" />
-                        <span>nav 2</span>
+                        <Link to="/home">
+                            <Icon type="video-camera" />
+                            <span>nav 2</span>
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="3">
-                        <Icon type="upload" />
-                        <span>nav 3</span>
+                        <Link to="/login"><Icon type="upload" />
+                            <span>nav 3</span></Link>
                     </Menu.Item>
                 </Menu>
             </Sider>
