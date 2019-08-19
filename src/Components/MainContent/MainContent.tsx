@@ -1,11 +1,31 @@
 import React from 'react';
 import './MainContent.css';
 import { Layout } from 'antd';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import HomePage from '../../Pages/HomePage/HomePage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
+import NotFoundPage from '../../Pages/NotFoundPage/NotFoundPage';
 
 const { Content } = Layout;
+
+const routes = [
+    {
+        path: "/",
+        exact: true,
+        main: HomePage
+    },
+    {
+        path: "/home",
+        main: HomePage
+    },
+    {
+        path: "/login",
+        main: LoginPage
+    },
+    {
+        main: NotFoundPage
+    }
+];
 
 class MainContent extends React.Component {
 
@@ -14,9 +34,14 @@ class MainContent extends React.Component {
             <Content
                 className="main-content"
             >
-                <Route path="/" exact component={HomePage} />
-                <Route path="/home/" component={HomePage} />
-                <Route path="/login/" component={LoginPage} />
+                {routes.map((route, index) => (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.main}
+                    />
+                ))}
             </Content>
 
         )

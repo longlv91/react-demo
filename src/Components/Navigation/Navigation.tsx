@@ -23,7 +23,7 @@ class Navigation extends React.Component<NavigationTypes, {}> {
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <Link to="/home">
+                        <Link to="/dashboard">
                             <Icon type="video-camera" />
                             <span>Dashboard</span>
                         </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeaderNav.css';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Menu } from 'antd';
 
 const { Header } = Layout;
 interface HeaderNavTypes {
@@ -16,7 +16,7 @@ class HeaderNav extends React.Component<HeaderNavTypes, {}> {
                 <Icon
                     className="trigger"
                     type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-                    onClick={()=> this.props.changeStatus()}
+                    onClick={() => this.props.changeStatus()}
                 />
             </Header>
         )
