@@ -19,18 +19,18 @@ class Navigation extends React.Component<NavigationTypes, {}> {
                     <Menu.Item key="1">
                         <Link to="/">
                             <Icon type="user" />
-                            <span>nav 1</span>
+                            <span>Home Page</span>
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="2">
                         <Link to="/home">
                             <Icon type="video-camera" />
-                            <span>nav 2</span>
+                            <span>Dashboard</span>
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="3">
                         <Link to="/login"><Icon type="upload" />
-                            <span>nav 3</span></Link>
+                            <span>Login</span></Link>
                     </Menu.Item>
                 </Menu>
             </Sider>
