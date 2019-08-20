@@ -1,6 +1,10 @@
 .main-content {
-    margin: '24px 16px';
-    padding: 24;
+    margin: 24px 16px;
+    padding: 24px;
     background: #fff;
-    min-height: 480px;
+    max-height: calc(100vh - 181px);
+}
+
+.main-content .scrollbar-container {
+    height: calc(100vh - 181px);
 }

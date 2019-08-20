@@ -6,6 +6,8 @@ import Navigation from './Components/Navigation/Navigation';
 import HeaderNav from './Components/Header/HeaderNav';
 import MainContent from './Components/MainContent/MainContent';
 
+const { Footer } = Layout;
+
 class App extends React.Component {
   state = {
     collapsed: false,
@@ -30,6 +32,7 @@ class App extends React.Component {
           <Layout>
             <HeaderNav collapsed={this.state.collapsed} changeStatus={this.toggle} />
             <MainContent />
+            <Footer style={{ textAlign: 'center' }}>React Demo with Ant Design ©2019</Footer>
           </Layout>
         </Layout>
       </Router>

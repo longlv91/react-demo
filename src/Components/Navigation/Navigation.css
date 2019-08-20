@@ -3,3 +3,11 @@
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
 }
+
+.navigation .scrollbar-container {
+    height: calc(100vh - 64px);
+}
+
+.ps.ps--active-y>.ps__rail-y {
+    border-radius: 5px 0 0 5px;
+}

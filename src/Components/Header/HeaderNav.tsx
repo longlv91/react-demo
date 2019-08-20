@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeaderNav.css';
-import { Layout, Icon, Menu } from 'antd';
+import { Layout, Icon } from 'antd';
 
 const { Header } = Layout;
 interface HeaderNavTypes {
