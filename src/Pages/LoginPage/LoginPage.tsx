@@ -2,16 +2,21 @@ import React from 'react';
 import './LoginPage.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
+import AuthenticationService from '../../Services/AuthenticationService';
 
 interface LoginFormProps extends FormComponentProps {
 }
 class LoginPage extends React.Component<LoginFormProps, any> {
 
+    componentDidMount() {
+        document.title = 'Login Page';
+    }
+
     handleSubmit = (e: any) => {
         e.preventDefault();
         this.props.form.validateFields((err: any, values: any) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                AuthenticationService.login(values.username, values.password);
             }
         });
     };

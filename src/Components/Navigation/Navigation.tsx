@@ -4,6 +4,7 @@ import { Layout, Menu, Icon } from 'antd';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from 'axios';
+import { DataService } from '../../Services/DataService';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -29,56 +30,57 @@ class Navigation extends React.Component<NavigationTypes, any> {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:3333/api/menus')
-            .then(response => {
-                this.setState({ menus: response.data });
-            })
-            .catch((error) => {
-                this.setState({ menus: [] })
-            })
-            .finally(function () {
-                console.log('Done call API');
-            });
+        DataService.getMenus().then(response => {
+            this.setState({ menus: response });
+            this.forceUpdate();
+        })
+        .catch((error) => {
+            this.setState({ menus: [] })
+        })
     }
 
     render() {
-        const listItems = this.state.menus.map((menu, index) => {
-            if (menu['hasChild']) {
-                const childItems = menu['children'].map((subMenu, i) => {
+        let  listItems = null;
+        if (this.state.menus && this.state.menus.length > 0) {
+            listItems = this.state.menus.map((menu, index) => {
+                if (menu['hasChild']) {
+                    const childItems = menu['children'].map((subMenu, i) => {
+                        return (
+                            <Menu.Item key={'sub-' + (index + 1) + i}>
+                                <Link to={subMenu['routerLink']}>
+                                    <Icon type={subMenu['icon']} />
+                                    <span>{subMenu['label']}</span>
+                                </Link>
+                            </Menu.Item>
+                        )
+                    })
+    
                     return (
-                        <Menu.Item key={'sub-' + (index + 1) + i}>
-                            <Link to={subMenu['routerLink']}>
-                                <Icon type={subMenu['icon']} />
-                                <span>{subMenu['label']}</span>
+                        <SubMenu
+                            key={'sub-' + (index + 1)}
+                            title={
+                                <span>
+                                    <Icon type={menu['icon']} />
+                                    <span>{menu['label']}</span>
+                                </span>
+                            }
+                        >
+                            {childItems}
+                        </SubMenu>
+                    )
+                } else {
+                    return (
+                        <Menu.Item key={index + 1}>
+                            <Link to={menu['routerLink']}>
+                                <Icon type={menu['icon']} />
+                                <span>{menu['label']}</span>
                             </Link>
                         </Menu.Item>
                     )
-                })
-
-                return (
-                    <SubMenu
-                        key={'sub-' + (index + 1)}
-                        title={
-                            <span>
-                                <Icon type={menu['icon']} />
-                                <span>{menu['label']}</span>
-                            </span>
-                        }
-                    >
-                        {childItems}
-                    </SubMenu>
-                )
-            } else {
-                return (
-                    <Menu.Item key={index + 1}>
-                        <Link to={menu['routerLink']}>
-                            <Icon type={menu['icon']} />
-                            <span>{menu['label']}</span>
-                        </Link>
-                    </Menu.Item>
-                )
-            }
-        });
+                }
+            });
+        }
+        
         return (
             <Sider trigger={null} collapsible collapsed={this.props.collapsed} className="navigation">
                 <div className="logo" />

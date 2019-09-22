@@ -11,6 +11,12 @@ import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 
 const routes = [
     {
+        path: "/pages/authentication/login",
+        exact: true,
+        public: true,
+        main: LoginPage
+    },
+    {
         path: "/",
         exact: true,
         main: HomePage
@@ -29,11 +35,6 @@ const routes = [
         path: "/apps/calendar",
         exact: true,
         main: CalendarPage
-    },
-    {
-        path: "/pages/authentication/login",
-        exact: true,
-        main: LoginPage
     },
     {
         path: "/pages/authentication/register",
@@ -56,6 +57,7 @@ const routes = [
         main: ChangelogPage
     },
     {
+        path: "*",
         main: NotFoundPage
     }
 ];
